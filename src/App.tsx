@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { ListMenu } from "./pages/ListBuku";
-import { TambahMenu } from "./pages/TambahBuku";
-import { UpdateMenu } from "./pages/UpdateBuku";
+import { lazy } from "react";
+
+const LazyListMenu = lazy(() => import("./pages/ListBuku"));
+const LazyTambahMenu = lazy(() => import("./pages/TambahBuku"));
+const LazyUpdateMenu = lazy(() => import("./pages/UpdateBuku"));
 
 export function App() {
   return (
@@ -10,9 +12,9 @@ export function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<ListMenu />} />
-          <Route path="/tambah" element={<TambahMenu />} />
-          <Route path="/update/:id" element={<UpdateMenu />} />
+          <Route path="/" element={<LazyListMenu />} />
+          <Route path="/tambah" element={<LazyTambahMenu />} />
+          <Route path="/update/:id" element={<LazyUpdateMenu />} />
         </Routes>
       </main>
     </div>
