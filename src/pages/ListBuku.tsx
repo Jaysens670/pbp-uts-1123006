@@ -2,7 +2,8 @@ import { useBuku } from "../hooks/useBuku";
 import { BookCard } from "../components/BookCard";
 import "./ListBuku.css";
 
-export function ListMenu() {
+// Gunakan export default agar bisa dibaca oleh React.lazy()
+export default function ListMenu() {
   const { buku, loading, error, pinjam, balik } = useBuku();
 
   if (loading) return <div className="container"><p className="loading">Loading...</p></div>;

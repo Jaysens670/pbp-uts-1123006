@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { Buku } from "../types/buku";
 import "./BookCard.css";
+import { useNavigate } from "react-router-dom";
+
 
 interface BookCardProps {
   book: Buku;
@@ -13,6 +15,7 @@ export function BookCard({ book, onPinjam, onBalik }: BookCardProps) {
   const [namaPeminjam, setNamaPeminjam] = useState("");
   const [showModal, setShowModal] = useState(false);
   const isBorrowed = book.status === "borrowed";
+  const navigate = useNavigate();
 
   const handlePinjam = () => {
     if (!namaPeminjam.trim()) return;

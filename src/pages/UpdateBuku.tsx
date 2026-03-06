@@ -1,38 +1,53 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { fetchBukuById, updateBuku } from "../api/APIbuku";
-import { BookForm } from "../components/BookForm";
-import type { UpdateBukuPayload } from "../types/buku";
+// import { useState, useEffect } from "react";
+// import { useParams, useNavigate } from "react-router-dom";
+// import * as api from "../api/APIbuku";
 
-export function UpdateMenu() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [initialValues, setInitialValues] = useState<UpdateBukuPayload | null>(null);
-  const [error, setError] = useState("");
+// export default function EditBuku() {
+//   const { id } = useParams();
+//   const navigate = useNavigate();
+//   const [formData, setFormData] = useState({ judul: "", deskripsi: "", tahun: "" });
 
-  useEffect(() => {
-    if (!id) return;
-    fetchBukuById(id)
-      .then(({ data }) => setInitialValues({ judul: data.judul, deskripsi: data.deskripsi, tahun: data.tahun, kategori: data.kategori }))
-      .catch((err) => setError(err instanceof Error ? err.message : "Gagal memuat data"))
-      .finally(() => setLoading(false));
-  }, [id]);
+//   useEffect(() => {
+//     if (id) {
+//       api.fetchBukuById(id).then(res => {
+//         setFormData({
+//           judul: res.data.judul,
+//           deskripsi: res.data.deskripsi,
+//           tahun: res.data.tahun
+//         });
+//       });
+//     }
+//   }, [id]);
 
-  const handleSubmit = async (payload: UpdateBukuPayload) => {
-    if (!id) return;
-    await updateBuku(id, payload);
-    navigate("/");
-  };
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     try {
+//       if (id) {
+//         await api.updateBuku(id, formData);
+//         alert("Buku berhasil diupdate!");
+//         navigate("/");
+//       }
+//     } catch (err) {
+//       alert("Gagal update");
+//     }
+//   };
 
-  if (loading) return <div className="container"><p className="loading">Memuat...</p></div>;
-  if (error) return <div className="container"><p style={{ color: "#c0392b" }}>{error}</p></div>;
-  if (!initialValues) return null;
-
-  return (
-    <div className="container">
-      <h1>Update Buku</h1>
-      <BookForm initialValues={initialValues} onSubmit={handleSubmit} submitLabel="Update" />
-    </div>
-  );
-}
+//   return (
+//     <div className="container">
+//       <h2>Edit Buku</h2>
+//       <form onSubmit={handleSubmit}>
+//         <input 
+//           value={formData.judul} 
+//           onChange={(e) => setFormData({...formData, judul: e.target.value})} 
+//           placeholder="Judul" 
+//         />
+//         <textarea 
+//           value={formData.deskripsi} 
+//           onChange={(e) => setFormData({...formData, deskripsi: e.target.value})} 
+//           placeholder="Deskripsi" 
+//         />
+//         <button type="submit">Simpan Perubahan</button>
+//       </form>
+//     </div>
+//   );
+// }
