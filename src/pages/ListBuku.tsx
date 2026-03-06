@@ -5,7 +5,7 @@ import "./ListBuku.css";
 export function ListMenu() {
   const { buku, loading, error, pinjam, balik } = useBuku();
 
-  if (loading) return <div className="container"><p className="loading">Memuat...</p></div>;
+  if (loading) return <div className="container"><p className="loading">Loading...</p></div>;
   if (error) return <div className="container"><p className="no-data" style={{ color: "#c0392b" }}>{error}</p></div>;
   if (!buku.length) return <div className="container"><p className="no-data">Belum ada buku</p></div>;
 

@@ -11,7 +11,7 @@ export function TambahMenu() {
   return (
     <div className="container">
       <h1>Tambah Buku</h1>
-      <BookForm onSubmit={handleSubmit} submitLabel="Tambah" />
+      <BookForm onSubmit={handleSubmit} submitLabel="Add" />
     </div>
   );
 }

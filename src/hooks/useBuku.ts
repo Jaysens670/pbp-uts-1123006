@@ -14,7 +14,7 @@ export function useBuku() {
       const { data } = await api.fetchSemuaBuku();
       setBuku(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gagal memuat data");
+      setError(err instanceof Error ? err.message : "Gagal load data");
     } finally {
       setLoading(false);
     }

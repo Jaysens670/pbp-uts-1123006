@@ -8,7 +8,7 @@ interface BookFormProps {
   submitLabel?: string;
 }
 
-export function BookForm({ initialValues = {}, onSubmit, isLoading, submitLabel = "Simpan" }: BookFormProps) {
+export function BookForm({ initialValues = {}, onSubmit, isLoading, submitLabel = "Save" }: BookFormProps) {
   const [judul, setJudul] = useState(initialValues.judul ?? "");
   const [deskripsi, setDeskripsi] = useState(initialValues.deskripsi ?? "");
   const [tahun, setTahun] = useState(initialValues.tahun ?? "");
@@ -25,7 +25,7 @@ export function BookForm({ initialValues = {}, onSubmit, isLoading, submitLabel 
     try {
       await onSubmit({ judul: judul.trim(), deskripsi: deskripsi.trim(), tahun, kategori });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Terjadi kesalahan");
+      setError(err instanceof Error ? err.message : "Ada Error");
     }
   };
 
@@ -40,7 +40,7 @@ export function BookForm({ initialValues = {}, onSubmit, isLoading, submitLabel 
       <input value={tahun} onChange={(e) => setTahun(e.target.value)} required />
       <label>Kategori</label>
       <input value={kategori} onChange={(e) => setKategori(e.target.value)} required />
-      <button type="submit" disabled={isLoading}>{isLoading ? "Memproses..." : submitLabel}</button>
+      <button type="submit" disabled={isLoading}>{isLoading ? "Lagi Memproses..." : submitLabel}</button>
     </form>
   );
 }
